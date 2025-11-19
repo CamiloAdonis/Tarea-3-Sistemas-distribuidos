@@ -36,14 +36,38 @@ Tarea3/
 ├── scripts/
 │   └── wordcount.pig
 │
+├── graficos.py 
 ├── Dockerfile
 └── docker-compose.yml
 ---
 ```
 ## 4. Ejecutar el Análisis
+
 # Entrar al contenedor Pig
+```bash
 docker exec -it pig bash
+```
 # Navegar a scripts
+```bash
 cd /scripts
+```
 # ejecutar
+```bash
 pig -x mapreduce wordcount.pig
+```
+# salir
+```bash
+exit
+```
+---
+
+## 5 Generación de Gráficos
+
+### Prerrequisitos
+```bash
+pip install matplotlib pandas wordcloud
+```
+### Ejecutar análisis visual
+```bash
+python graficos.py
+```
