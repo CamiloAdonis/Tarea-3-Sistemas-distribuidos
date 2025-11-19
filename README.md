@@ -39,9 +39,17 @@ Tarea3/
 ├── graficos.py 
 ├── Dockerfile
 └── docker-compose.yml
----
 ```
-## 4. Ejecutar el Análisis
+---
+
+## 4. Construir contenedores
+```bash
+docker-compose build pig
+docker-compose up -d
+```
+---
+
+## 5. Ejecutar el Análisis
 
 # Entrar al contenedor Pig
 ```bash
@@ -61,7 +69,7 @@ exit
 ```
 ---
 
-## 5 Generación de Gráficos
+## 6 Generación de Gráficos
 
 ### Prerrequisitos
 ```bash
