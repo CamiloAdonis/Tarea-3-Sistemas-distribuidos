@@ -58,6 +58,11 @@ docker-compose up -d
 ```bash
 docker exec -it pig bash
 ```
+# Eliminar los resultados anteriores
+```bash
+hdfs dfs -rm -r /output/yahoo_wordcount
+hdfs dfs -rm -r /output/llm_wordcount
+```
 # Navegar a scripts
 ```bash
 cd /scripts
