@@ -36,6 +36,9 @@ Tarea3/
 ├── scripts/
 │   └── wordcount.pig
 │
+├── output/
+│
+│
 ├── graficos.py 
 ├── Dockerfile
 └── docker-compose.yml
