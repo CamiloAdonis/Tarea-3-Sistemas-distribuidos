@@ -27,14 +27,11 @@ Los datos se encuentran en la carpeta local `./data` y los scripts Pig en `./scr
 ---
 
 ## 3. Estructura del Proyecto
-tarea3/
-│
+Tarea3/
 ├── data/
 │ └── responses_export.csv
-│
 ├── scripts/
 │ └── wordcount.pig
-│
 ├── Dockerfile
 └── docker-compose.yml
 
