@@ -1,93 +1,50 @@
 # Tarea-3-Sistemas-distribuidos
-
-Este proyecto implementa un análisis batch para comparar vocabulario entre respuestas humanas de Yahoo y respuestas generadas por un modelo LLM, utilizando Hadoop y Apache Pig.
+Este proyecto implementa un análisis batch para comparar el vocabulario usado en respuestas humanas de Yahoo y respuestas generadas por un modelo LLM, utilizando Hadoop, HDFS y Apache Pig.  
 Todo el sistema está containerizado mediante Docker y docker-compose.
 
-1. Arquitectura
+---
 
-El sistema utiliza los siguientes contenedores principales:
+## 1. Arquitectura General
 
-Namenode (HDFS)
+El sistema está compuesto por los siguientes servicios:
 
-Datanode
+- **Namenode**: nodo maestro de HDFS.
+- **Datanode**: almacenamiento distribuido.
+- **ResourceManager**: planificación de tareas YARN.
+- **HistoryServer**: historial de ejecuciones.
+- **Pig**: contenedor cliente utilizado para ejecutar los scripts Pig.
 
-ResourceManager
+Los datos se encuentran en la carpeta local `./data` y los scripts Pig en `./scripts`.
 
-HistoryServer
+---
 
-Pig (cliente donde se ejecutan los scripts)
+## 2. Requisitos
 
-Los datos se montan en la carpeta local ./data.
-Los scripts Pig se encuentran en ./scripts.
+- Docker  
+- docker-compose  
+- Archivo `responses_export.csv` dentro de `./data/`
 
-2. Requisitos
+---
 
-Docker
-
-docker-compose
-
-Archivo responses_export.csv dentro de ./data/
-
-3. Estructura del proyecto
+## 3. Estructura del Proyecto
 tarea3/
 │
 ├── data/
-│   └── responses_export.csv
+│ └── responses_export.csv
 │
 ├── scripts/
-│   └── wordcount.pig
+│ └── wordcount.pig
 │
 ├── Dockerfile
 └── docker-compose.yml
 
-4. Construcción y despliegue
-4.1 Construir el contenedor Pig
-docker-compose build pig
+---
 
-4.2 Levantar el clúster Hadoop
-docker-compose up -d
-
-4.3 Verificar contenedores
-docker ps
-
-5. Cargar los datos al HDFS
-
-Ingresar al namenode:
-
-docker exec -it namenode bash
-
-
-Cargar el archivo:
-
-hdfs dfs -mkdir -p /input
-hdfs dfs -put /data/responses_export.csv /input/
-hdfs dfs -ls /input
-
-6. Ejecutar el análisis con Pig
-
-Entrar al contenedor Pig:
-
+## 4. Ejecutar el Análisis
+# Entrar al contenedor Pig
 docker exec -it pig bash
+
+# Navegar a scripts y ejecutar
 cd /scripts
-
-
-Ejecutar el script Pig:
-
 pig -x mapreduce wordcount.pig
-
-
-El script genera dos salidas en HDFS:
-
-/output/yahoo_wordcount
-
-/output/llm_wordcount
-
-7. Consultar los resultados
-
-Opcionalmente se pueden mostrar los primeros resultados desde HDFS:
-
-hdfs dfs -cat /output/yahoo_wordcount/part* | head
-hdfs dfs -cat /output/llm_wordcount/part* | head
-
-8. Detener el sistema
-docker-compose down
+## 4. Ejecutar el Análisis
