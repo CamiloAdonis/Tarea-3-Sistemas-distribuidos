@@ -43,8 +43,7 @@ tarea3/
 ## 4. Ejecutar el Análisis
 # Entrar al contenedor Pig
 docker exec -it pig bash
-
-# Navegar a scripts y ejecutar
+# Navegar a scripts
 cd /scripts
+# ejecutar
 pig -x mapreduce wordcount.pig
-## 4. Ejecutar el Análisis
